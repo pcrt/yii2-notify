@@ -1,0 +1,25 @@
+{
+	"name": "pcrt/yii2-notify",
+	"type": "library",
+	"description": "Yii2-notify component ",
+	"keywords": ["yii2", "Notification", "mail"],
+	"license": "BSD-3-Clause",
+	"version": "1.0.4",
+	"authors": [
+		{
+			"name": "Marco Petrini",
+			"email": "info@protocollicreativi.it",
+			"homepage": "http://www.protocollicreativi.it"
+		}
+	],
+	"minimum-stability": "stable",
+	"support": {
+		"source": "https://github.com/pcrt/yii2-notify",
+		"issues": "https://github.com/pcrt/yii2-notify/issues"
+	},
+	"autoload": {
+		"psr-4": {
+			"pcrt\\component\\": "component"
+		}
+	}
+}
