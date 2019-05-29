@@ -16,6 +16,7 @@ use yii\console\Exception;
 class Notification
 {
     public $overridepath;
+    public $mainpath;
     public $notifier_email;
   
     public function init()
@@ -47,7 +48,7 @@ class Notification
 
     private function getTemplateFile($name)
     {
-        $default = Yii::getAlias('@app') . '/mail/layouts/' . $name . '.php';
+        $default = Yii::getAlias('@app') . $this->mainpath . $name . '.php';
         $alternative = Yii::getAlias('@app') . $this->overridepath . $name . '.php';
     
         \Yii::info("Tryng to find alternative template email .", 'notification');
