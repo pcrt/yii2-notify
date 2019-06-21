@@ -24,19 +24,19 @@ class Notification
         parent::init();
     }
   
-    public function send($template, $fields, $to, $subject)
+    public function send($template, $fields, $to, $subject, $from = null)
     {
         $_template = self::getTemplateFile($template);
         $body = Yii::$app->view->renderFile($_template, $fields);
         $result = Yii::$app->mailer->compose()
-          ->setFrom($this->notifier_email)
+          ->setFrom(($from == null) ? $this->notifier_email : $from)
           ->setTo($to)
           ->setSubject($subject)
           ->setHtmlBody($body)
           ->send();
     
         if ($result) {
-            \Yii::info("Email sent to : " . $to . " from : " . $this->notifier_email, 'notification');
+            \Yii::info("Email sent to : " . $to . " from : " . ($from == null) ? $this->notifier_email : $from, 'notification');
             \Yii::info("Subject : " . $subject, 'notification');
             \Yii::info("Body : \n" . $body, 'notification');
         } else {
