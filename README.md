@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-$ php composer.phar require pcrt/yii2-notification "*"
+$ php composer.phar require pcrt/yii2-notify "*"
 ```
 
 or add
 
 ```
-"pcrt/yii2-notification": "*"
+"pcrt/yii2-notify": "*"
 ```
 
 to the require section of your `composer.json` file.
