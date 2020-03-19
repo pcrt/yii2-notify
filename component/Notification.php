@@ -19,11 +19,6 @@ class Notification
     public $mainpath;
     public $notifier_email;
   
-    public function init()
-    {
-        parent::init();
-    }
-  
     public function send($template, $fields, $to, $subject, $from = null)
     {
         $_template = self::getTemplateFile($template);
