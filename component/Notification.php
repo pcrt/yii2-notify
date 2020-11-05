@@ -59,6 +59,6 @@ class Notification
             \Yii::info("PATH FOUND", 'notification');
             return $default;
         }
-        throw new \yii\base\Exception('Template file not found !', 'notification');
+        throw new \yii\base\Exception('Template file not found !');
     }
 }
