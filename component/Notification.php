@@ -19,16 +19,22 @@ class Notification
     public $mainpath;
     public $notifier_email;
   
-    public function send($template, $fields, $to, $subject, $from = null)
+    public function send($template, $fields, $to, $subject, $from = null, $attachmentContent = false)
     {
         $_template = self::getTemplateFile($template);
         $body = Yii::$app->view->renderFile($_template, $fields);
-        $result = Yii::$app->mailer->compose()
+        $mail = Yii::$app->mailer->compose()
           ->setFrom(($from == null) ? $this->notifier_email : [ $this->notifier_email => $from ])
           ->setTo($to)
           ->setSubject($subject)
-          ->setHtmlBody($body)
-          ->send();
+          ->setHtmlBody($body);
+          //->send();
+
+        if ($attachmentContent) {
+            $mail->attachContent($attachmentContent['content'], ['fileName' => $attachmentContent['name'], 'contentType' => $attachmentContent['type']]);
+        }
+
+        $result = $mail->send();
     
         if ($result) {
             \Yii::info("Email sent to : " . $to . " from : " . ($from == null) ? $this->notifier_email : [ $this->notifier_email => $from ], 'notification');
