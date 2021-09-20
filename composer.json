@@ -4,7 +4,7 @@
 	"description": "Yii2-notify component ",
 	"keywords": ["yii2", "Notification", "mail"],
 	"license": "BSD-3-Clause",
-	"version": "1.0.11",
+	"version": "1.0.12",
 	"authors": [
 		{
 			"name": "Marco Petrini",

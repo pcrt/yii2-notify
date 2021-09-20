@@ -34,14 +34,22 @@ class Notification
             $mail->attachContent($attachmentContent['content'], ['fileName' => $attachmentContent['name'], 'contentType' => $attachmentContent['type']]);
         }
 
-        $result = $mail->send();
+        try {
+            $result = $mail->send();
+        } catch (Exception $e) {
+            return ['success' => false, 'error' => $e];
+        }
     
         if ($result) {
             \Yii::info("Email sent to : " . $to . " from : " . ($from == null) ? $this->notifier_email : [ $this->notifier_email => $from ], 'notification');
             \Yii::info("Subject : " . $subject, 'notification');
             \Yii::info("Body : \n" . $body, 'notification');
+
+            return ['success' => true];
         } else {
-            \Yii::error("Email not send");
+            \Yii::error("Email not sent");
+
+            return ['success' => false, 'error' => $result];
         }
         \Yii::info("-----------------------------------------------------------------------------");
         \Yii::info("\n\n");
